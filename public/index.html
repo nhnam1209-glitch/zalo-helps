@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Zalo Guard - Cảnh báo tin nhắn lừa đảo trên Zalo Web</title>
+  <style>
+    *{box-sizing:border-box}
+    body{margin:0;font:16px/1.6 system-ui,-apple-system,"Segoe UI",sans-serif;color:#1c2430;background:#f4f7fb}
+    .wrap{max-width:860px;margin:0 auto;padding:0 20px}
+    header{background:linear-gradient(135deg,#0068ff,#0a3d9c);color:#fff;padding:64px 0 56px;text-align:center}
+    h1{margin:0 0 12px;font-size:2.2rem}
+    header p{margin:0 auto;max-width:620px;opacity:.95}
+    .btn{display:inline-block;margin-top:24px;background:#fff;color:#0068ff;font-weight:700;text-decoration:none;padding:14px 28px;border-radius:10px;box-shadow:0 4px 14px rgba(0,0,0,.2)}
+    .btn:hover{background:#eaf2ff}
+    section{padding:44px 0}
+    h2{margin:0 0 20px;font-size:1.5rem}
+    .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:16px}
+    .card{background:#fff;border-radius:12px;padding:18px 20px;box-shadow:0 2px 8px rgba(0,0,0,.06)}
+    .card h3{margin:0 0 6px;font-size:1.05rem}
+    .card p{margin:0;color:#4a5565;font-size:.95rem}
+    ol.steps{list-style:none;margin:0;padding:0;counter-reset:s}
+    ol.steps li{counter-increment:s;background:#fff;border-radius:12px;padding:16px 20px 16px 64px;margin-bottom:12px;position:relative;box-shadow:0 2px 8px rgba(0,0,0,.06)}
+    ol.steps li::before{content:counter(s);position:absolute;left:18px;top:14px;width:32px;height:32px;border-radius:50%;background:#0068ff;color:#fff;font-weight:700;text-align:center;line-height:32px}
+    code{background:#eef2f8;padding:2px 6px;border-radius:5px;font-size:.9em}
+    .privacy{background:#e8f5e9;border-left:5px solid #388e3c;border-radius:8px;padding:16px 20px}
+    footer{text-align:center;color:#6b7686;font-size:.85rem;padding:28px 0 40px}
+  </style>
+</head>
+<body>
+  <header>
+    <div class="wrap">
+      <h1>🛡️ Zalo Guard</h1>
+      <p>Tiện ích Chrome tự động phát hiện tin nhắn lừa đảo trên Zalo Web và cảnh báo bạn ngay khi tin xuất hiện, trước khi bạn kịp bấm link hay chuyển tiền.</p>
+      <a class="btn" href="/zalo-guard-extension.zip" download>⬇ Tải Zalo Guard (.zip)</a>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <section>
+      <h2>Tính năng</h2>
+      <div class="grid">
+        <div class="card"><h3>Điểm rủi ro</h3><p>Chấm từ 0 đến 100 cho mỗi tin nhắn mới từ người lạ.</p></div>
+        <div class="card"><h3>Nhận diện chiêu thức</h3><p>Chỉ ra kẻ gửi đang dùng chiêu gì: giả mạo ngân hàng, tạo áp lực, link lạ...</p></div>
+        <div class="card"><h3>Giải mã ý đồ</h3><p>Giải thích bằng tiếng Việt dễ hiểu kẻ gửi thực sự muốn gì.</p></div>
+        <div class="card"><h3>Tô sáng cụm đáng ngờ</h3><p>Trích đúng những cụm từ nguy hiểm trong tin nhắn.</p></div>
+      </div>
+    </section>
+
+    <section>
+      <h2>Cài đặt trong 3 bước</h2>
+      <ol class="steps">
+        <li><strong>Tải và giải nén.</strong> Bấm nút tải ở trên, rồi giải nén file <code>zalo-guard-extension.zip</code> ra một thư mục cố định.</li>
+        <li><strong>Nạp vào Chrome.</strong> Mở <code>chrome://extensions</code>, bật <strong>Developer mode</strong> (góc phải trên), bấm <strong>Load unpacked</strong> và chọn thư mục vừa giải nén.</li>
+        <li><strong>Mở Zalo Web.</strong> Vào <a href="https://chat.zalo.me" target="_blank" rel="noopener">chat.zalo.me</a>. Khi có tin mới từ người khác, khung cảnh báo sẽ hiện ở góc phải màn hình.</li>
+      </ol>
+    </section>
+
+    <section>
+      <h2>Quyền riêng tư</h2>
+      <div class="privacy">
+        Nội dung tin nhắn chỉ nằm tạm trong bộ nhớ (RAM) khi đang phân tích và được xóa ngay sau khi trả kết quả. Chúng tôi không lưu cơ sở dữ liệu và không ghi log nội dung tin nhắn. Extension chỉ gửi tin nhắn mới từ đối phương, không gửi tin bạn tự gửi hay tin cũ.
+      </div>
+    </section>
+  </main>
+
+  <footer>Zalo Guard · Công cụ hỗ trợ, không thay thế sự cảnh giác của bạn. Khi nghi ngờ, hãy gọi trực tiếp cho người quen hoặc ngân hàng để xác minh.</footer>
+</body>
+</html>

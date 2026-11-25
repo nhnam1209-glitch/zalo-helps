@@ -1,0 +1,15 @@
+{
+  "manifest_version": 3,
+  "name": "Zalo Guard",
+  "version": "1.0.0",
+  "description": "Cảnh báo tin nhắn lừa đảo trên Zalo Web.",
+  "host_permissions": ["http://localhost:3000/*"],
+  "background": { "service_worker": "background.js" },
+  "content_scripts": [
+    {
+      "matches": ["https://chat.zalo.me/*"],
+      "js": ["content.js"],
+      "run_at": "document_idle"
+    }
+  ]
+}

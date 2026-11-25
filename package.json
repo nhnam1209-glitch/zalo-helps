@@ -1,7 +1,10 @@
 {
-  "name": "zalo-guard-server",
-  "version": "1.0.0",
-  "private": true,
-  "main": "server.js",
-  "scripts": { "start": "node server.js" }
+    "name":  "zalo-guard-server",
+    "version":  "1.0.0",
+    "private":  true,
+    "main":  "server.js",
+    "scripts":  {
+                    "start":  "node server.js",
+                    "build:zip":  "tar -a -c -f public/zalo-guard-extension.zip -C zalo-guard-extension ."
+                }
 }
