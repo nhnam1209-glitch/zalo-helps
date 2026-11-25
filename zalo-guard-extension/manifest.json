@@ -3,7 +3,7 @@
   "name": "Zalo Guard",
   "version": "1.0.0",
   "description": "Cảnh báo tin nhắn lừa đảo trên Zalo Web.",
-  "host_permissions": ["http://localhost:3000/*"],
+  "host_permissions": ["https://zalo-helps.vercel.app/*"],
   "background": { "service_worker": "background.js" },
   "content_scripts": [
     {

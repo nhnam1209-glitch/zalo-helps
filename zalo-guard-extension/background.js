@@ -1,5 +1,5 @@
 // Gọi API từ service worker để tránh vướng CORS/mixed content của trang Zalo.
-const API_URL = 'http://localhost:3000/api/analyze-text';
+const API_URL = 'https://zalo-helps.vercel.app/api/analyze-text';
 
 chrome.runtime.onMessage.addListener((msg, _sender, sendResponse) => {
   if (msg?.type !== 'ANALYZE') return;
