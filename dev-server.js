@@ -1,8 +1,15 @@
+// CHỈ DÙNG ĐỂ CHẠY LOCAL (npm run dev). Không đặt tên file này là server.js/index.js/app.js ở thư mục gốc,
+// vì Vercel sẽ tự nhận làm entrypoint của cả site và bỏ qua public/ + api/.
 // Server RAM-only / Zero-Retention: không database, không ghi log nội dung tin nhắn.
 try { process.loadEnvFile('.env'); } catch { /* không có .env cũng được */ }
 
 const http = require('node:http');
+const fs = require('node:fs');
+const nodePath = require('node:path');
 const { analyze } = require('./ai-analyzer');
+
+const PUBLIC_DIR = nodePath.resolve(__dirname, 'public');
+const MIME = { '.html': 'text/html; charset=utf-8', '.zip': 'application/zip' };
 
 const PORT = process.env.PORT || 3000;
 const MAX_BODY = 16 * 1024;
@@ -53,8 +60,18 @@ const server = http.createServer(async (req, res) => {
     return res.end();
   }
 
-  if (req.method === 'GET' && (path === '/' || path === '/health')) {
+  if (req.method === 'GET' && (path === '/health' || path === '/api/health')) {
     return send(res, 200, { status: 'ok', service: 'zalo-guard-api' });
+  }
+
+  // Chỉ dùng khi chạy local: phục vụ public/ giống Vercel (trên Vercel file này không được dùng).
+  if (req.method === 'GET') {
+    const file = path === '/' ? 'index.html' : path.slice(1);
+    const full = nodePath.resolve(PUBLIC_DIR, file);
+    if (full.startsWith(PUBLIC_DIR + nodePath.sep) && fs.existsSync(full) && fs.statSync(full).isFile()) {
+      res.writeHead(200, { 'Content-Type': MIME[nodePath.extname(full)] || 'application/octet-stream' });
+      return res.end(fs.readFileSync(full));
+    }
   }
 
   if (req.method === 'POST' && path === '/api/analyze-text') {
