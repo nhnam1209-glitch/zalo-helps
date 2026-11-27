@@ -1,14 +1,24 @@
 {
   "manifest_version": 3,
   "name": "Zalo Guard",
-  "version": "1.0.0",
-  "description": "Cảnh báo tin nhắn lừa đảo trên Zalo Web.",
+  "version": "2.0.0",
+  "description": "Cảnh báo tin nhắn lừa đảo trên Zalo Web, Messenger/Facebook và Instagram Direct.",
   "host_permissions": ["https://zalo-helps.vercel.app/*"],
   "background": { "service_worker": "background.js" },
   "content_scripts": [
     {
       "matches": ["https://chat.zalo.me/*"],
-      "js": ["content.js"],
+      "js": ["core/scanner.js", "adapters/zalo.js"],
+      "run_at": "document_idle"
+    },
+    {
+      "matches": ["https://www.messenger.com/*", "https://www.facebook.com/*"],
+      "js": ["core/scanner.js", "adapters/messenger.js"],
+      "run_at": "document_idle"
+    },
+    {
+      "matches": ["https://www.instagram.com/direct/*", "https://www.instagram.com/*"],
+      "js": ["core/scanner.js", "adapters/instagram.js"],
       "run_at": "document_idle"
     }
   ]
